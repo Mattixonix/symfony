@@ -25,8 +25,8 @@ class ThumbnailGeneratorServiceIntegrationTest extends TestCase
             $this->assertEquals($expected_thumbnail_name, $thumbnail_path);
 
             list($width, $height) = getimagesize($thumbnail_path);
-            $this->assertLessThanOrEqual(300, $width, 'The width of the thumbnail is greater than 300');
-            $this->assertLessThanOrEqual(300, $height, 'The height of the thumbnail is greater than 300');
+            $this->assertLessThanOrEqual(150, $width, 'The width of the thumbnail is greater than 150');
+            $this->assertLessThanOrEqual(150, $height, 'The height of the thumbnail is greater than 150');
 
             unlink($thumbnail_path);
         }
