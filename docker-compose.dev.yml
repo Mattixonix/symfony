@@ -1,0 +1,12 @@
+services:
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    environment:
+      ADMINER_DEFAULT_SERVER: ${DB_HOST:-database}
+      ADMINER_DEFAULT_USER: ${DB_USER:-db}
+      ADMINER_DEFAULT_PASSWORD: ${DB_PASS:-db}
+    depends_on:
+      - database
+    ports:
+      - 8080:8080

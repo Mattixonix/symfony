@@ -1,0 +1,30 @@
+services:
+  database:
+    image: mysql:latest
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-symfony}
+      MYSQL_USER: ${DB_USER:-db}
+      MYSQL_PASSWORD: ${DB_PASS:-db}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS:-db}
+
+  symfony:
+    build:
+      context: .
+    restart: unless-stopped
+    ports:
+      - "80:8000"
+    volumes:
+      - ./app:/app
+    environment:
+      - SYMFONY_DATABASE_HOST=${DB_HOST:-database}
+      - SYMFONY_DATABASE_PORT_NUMBER=${DB_PORT:-3306}
+      - SYMFONY_DATABASE_USER=${DB_USER:-db}
+      - SYMFONY_DATABASE_PASSWORD=${DB_PASS:-db}
+      - SYMFONY_DATABASE_NAME=${DB_NAME:-symfony}
+      - SYMFONY_PROJECT_SKELETON=${SYMFONY_SKELETON:-symfony/skeleton}
+
+volumes:
+  db_data:

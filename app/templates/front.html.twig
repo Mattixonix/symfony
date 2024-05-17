@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <h1>Welcome on Thumbnail generator</h1>
+  <p>Upload your image below, choose the saving destination and we're good to go.</p>
+  <h2>Dropbox only!</h2>
+  <p>If you will choose to save file into Dropbox, the file should appear there in 5 minutes.
+  <br>Provide you're token from <a href="https://www.dropbox.com/developers/apps" target="_blank">Dropbox APP console</a> with propper permission "files.content.write".
+  <br><b>Remeber to first add permissions then generate token!</b>
+  <br>If your token will be valid, you should see thumbnail in 5 minutes.
+
+  <br>
+
+	{{ form(thumbnail_type_form) }}
+
+  {% if dropbox_thumb_prepared %}
+    <div class="alert alert-success">Your thumbnail has been converted successfully. If token is correct file will appear in 5 min.</div>
+  {% endif %}
+
+{% endblock %}
