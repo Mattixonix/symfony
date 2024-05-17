@@ -79,7 +79,7 @@ class ThumbnailTypeForm extends AbstractType
             ->add('submit', SubmitType::class);
     }
 
-    public function submitForm(string $filename, int $destination, UploadedFile $image, string $dropbox_token): Thumbnail
+    public function submitForm(string $filename, int $destination, UploadedFile $image, ?string $dropbox_token = null): Thumbnail
     {
         $upload_directory = $this->kernel->getProjectDir() . self::THUMBNAILS_DIRECTORY;
         $new_filename =  $filename . '_' . uniqid() . '.' . $image->guessExtension();
