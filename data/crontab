@@ -1,0 +1,1 @@
+*/5 * * * * root /opt/bitnami/php/bin/php /app/bin/console smartiveapp:thumbnails-push-dropbox >> /var/log/cron.log 2>&1
